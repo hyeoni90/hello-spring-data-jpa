@@ -8,6 +8,8 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import static javax.persistence.FetchType.LAZY;
+
 /**
  * Created by rainalee on 2020-11-03.
  */
@@ -21,14 +23,14 @@ public class Order {
     private Long id;
 
     // 연관관계 주인(주로 FK 를 가지고 있는 테이블)
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private final List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
