@@ -11,7 +11,8 @@ import lombok.Setter;
  * Created by hyeonahlee on 2020-11-13.
  */
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Member {
 
     @Id @GeneratedValue
@@ -24,5 +25,5 @@ public class Member {
     private Address address;
 
     @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 }
