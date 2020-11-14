@@ -1,12 +1,7 @@
 package com.hyeonah.hellospringdatajpa.domain;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,9 +14,10 @@ import lombok.Setter;
 public class Delivery {
 
     @Id @GeneratedValue
+    @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne
+    @OneToOne(mappedBy = "delivery")
     private Order order;
 
     @Embedded

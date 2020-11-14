@@ -1,6 +1,5 @@
 package com.hyeonah.hellospringdatajpa.domain.item;
 
-import com.hyeonah.hellospringdatajpa.domain.Item;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import lombok.Getter;

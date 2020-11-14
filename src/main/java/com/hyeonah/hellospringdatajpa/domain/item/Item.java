@@ -1,14 +1,10 @@
-package com.hyeonah.hellospringdatajpa.domain;
+package com.hyeonah.hellospringdatajpa.domain.item;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
+
+import com.hyeonah.hellospringdatajpa.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +18,7 @@ import lombok.Setter;
 public abstract class Item {
 
     @Id @GeneratedValue
+    @Column(name = "item_id")
     private Long id;
 
     private String name;

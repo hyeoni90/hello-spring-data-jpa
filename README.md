@@ -1,4 +1,4 @@
-# Spring Boot JPA를 활용한 My Basic Shop
+# Order Service
 
 ## 요구 사항 분석
 * 로그인, 회원가입
