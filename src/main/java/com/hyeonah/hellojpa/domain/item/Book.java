@@ -1,4 +1,4 @@
-package com.hyeonah.hellospringdatajpa.domain.item;
+package com.hyeonah.hellojpa.domain.item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -9,11 +9,11 @@ import lombok.Setter;
  * Created by hyeonahlee on 2020-11-13.
  */
 @Entity
-@DiscriminatorValue("M")
+@DiscriminatorValue("B")
 @Getter
 @Setter
-public class Movie extends Item {
+public class Book extends Item {
 
-    private String director;
-    private String actor;
+    private String author;
+    private String isbn;
 }

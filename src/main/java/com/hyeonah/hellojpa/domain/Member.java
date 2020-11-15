@@ -1,4 +1,4 @@
-package com.hyeonah.hellospringdatajpa.domain;
+package com.hyeonah.hellojpa.domain;
 
 import java.util.ArrayList;
 import java.util.List;

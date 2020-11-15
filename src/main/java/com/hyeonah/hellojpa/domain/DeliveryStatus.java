@@ -1,4 +1,4 @@
-package com.hyeonah.hellospringdatajpa.domain;
+package com.hyeonah.hellojpa.domain;
 
 /**
  * Created by hyeonahlee on 2020-11-03.

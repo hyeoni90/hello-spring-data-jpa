@@ -1,4 +1,4 @@
-package com.hyeonah.hellospringdatajpa.domain;
+package com.hyeonah.hellojpa.domain;
 
 import lombok.Getter;
 

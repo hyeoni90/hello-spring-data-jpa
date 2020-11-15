@@ -1,8 +1,8 @@
-package com.hyeonah.hellospringdatajpa.domain;
+package com.hyeonah.hellojpa.domain;
 
 import javax.persistence.*;
 
-import com.hyeonah.hellospringdatajpa.domain.item.Item;
+import com.hyeonah.hellojpa.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 

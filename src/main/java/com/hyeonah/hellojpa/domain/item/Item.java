@@ -1,10 +1,10 @@
-package com.hyeonah.hellospringdatajpa.domain.item;
+package com.hyeonah.hellojpa.domain.item;
 
+import com.hyeonah.hellojpa.domain.Category;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
-import com.hyeonah.hellospringdatajpa.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
 

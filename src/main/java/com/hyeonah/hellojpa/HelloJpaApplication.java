@@ -1,13 +1,13 @@
-package com.hyeonah.hellospringdatajpa;
+package com.hyeonah.hellojpa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloSpringDataJpaApplication {
+public class HelloJpaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HelloSpringDataJpaApplication.class, args);
+        SpringApplication.run(HelloJpaApplication.class, args);
     }
 
 }

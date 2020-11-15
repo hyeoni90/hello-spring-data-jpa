@@ -1,4 +1,4 @@
-package com.hyeonah.hellospringdatajpa.domain.item;
+package com.hyeonah.hellojpa.domain.item;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
