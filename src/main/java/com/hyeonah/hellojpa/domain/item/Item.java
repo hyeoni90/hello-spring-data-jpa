@@ -1,6 +1,7 @@
 package com.hyeonah.hellojpa.domain.item;
 
 import com.hyeonah.hellojpa.domain.Category;
+import com.hyeonah.hellojpa.exeption.NotEnoughStockException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -27,4 +28,23 @@ public abstract class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
+    /**
+     * add stock
+     * @param quantity
+     */
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+
+    /**
+     * remove stock
+     */
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if(restStock < 0) {
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.stockQuantity = restStock;
+    }
 }
