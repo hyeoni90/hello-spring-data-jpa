@@ -3,7 +3,9 @@ package com.hyeonah.hellojpa.domain;
 import javax.persistence.*;
 
 import com.hyeonah.hellojpa.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import static javax.persistence.FetchType.LAZY;
@@ -13,6 +15,7 @@ import static javax.persistence.FetchType.LAZY;
  */
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id
