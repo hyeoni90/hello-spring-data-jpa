@@ -15,7 +15,8 @@ import static javax.persistence.FetchType.LAZY;
 @Getter @Setter
 public class OrderItem {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_item_id")
     private Long id;
 
@@ -30,4 +31,26 @@ public class OrderItem {
     private int orderPrice; // 주문 가격
     private int count; //  주문 수량
 
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+
+        item.removeStock(count);
+        return orderItem;
+    }
+
+    public void cancel() {
+        getItem().addStock(count);
+    }
+
+    /**
+     * 주문 상품 전체 가격 조회
+     *
+     * @return
+     */
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
 }
