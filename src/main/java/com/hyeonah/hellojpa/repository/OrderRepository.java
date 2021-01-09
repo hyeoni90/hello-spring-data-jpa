@@ -25,15 +25,15 @@ public class OrderRepository {
 
     private final EntityManager em;
 
-    public void save(Order order) {
+    public void save(final Order order) {
         em.persist(order);
     }
 
-    public Order findOne(Long id) {
+    public Order findOne(final Long id) {
         return em.find(Order.class, id);
     }
 
-    public List<Order> findAllByString(OrderSearch orderSearch) {
+    public List<Order> findAllByString(final OrderSearch orderSearch) {
         String jqpl = "select o from Order o left join o.member m";
         boolean isFirstCondition = true;
 
@@ -74,33 +74,34 @@ public class OrderRepository {
     }
 
     /**
-     * JPA Criteria
+     * JPA Criteria (jqpl을 java code로 작성하여 동적쿼리 빌드 해주는 JPA 표준)
+     * 하지만, 실무에서 안씀!
      *
      * @param orderSearch
      * @return
      */
-    public List<Order> findAllByCriteria(OrderSearch orderSearch) {
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Order> cq = cb.createQuery(Order.class);
-        Root<Order> o = cq.from(Order.class);
-        Join<Object, Object> m = o.join("member", JoinType.INNER);
+    public List<Order> findAllByCriteria(final OrderSearch orderSearch) {
+        final CriteriaBuilder cb = em.getCriteriaBuilder();
+        final CriteriaQuery<Order> cq = cb.createQuery(Order.class);
+        final Root<Order> o = cq.from(Order.class);
+        final Join<Object, Object> m = o.join("member", JoinType.INNER);
 
-        List<Predicate> criteria = new ArrayList<>();
+        final List<Predicate> criteria = new ArrayList<>();
 
         // 주문 상태 검색
         if (orderSearch.getOrderStatus() != null) {
-            Predicate status = cb.equal(o.get("status"), orderSearch.getOrderStatus());
+            final Predicate status = cb.equal(o.get("status"), orderSearch.getOrderStatus());
             criteria.add(status);
         }
 
         // 회원 이름 검색
         if (StringUtils.hasText(orderSearch.getMemberName())) {
-            Predicate name = cb.like(m.<String>get("name"), "%" + orderSearch.getMemberName() + "%");
+            final Predicate name = cb.like(m.<String>get("name"), "%" + orderSearch.getMemberName() + "%");
             criteria.add(name);
         }
 
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
-        TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
+        final TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
         return query.getResultList();
     }
 }

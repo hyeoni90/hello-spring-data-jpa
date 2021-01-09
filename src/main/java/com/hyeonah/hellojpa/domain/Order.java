@@ -1,16 +1,26 @@
 package com.hyeonah.hellojpa.domain;
 
+import static javax.persistence.FetchType.LAZY;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
-
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import static javax.persistence.FetchType.LAZY;
 
 /**
  * Created by rainalee on 2020-11-03.
@@ -67,11 +77,11 @@ public class Order {
      * @param orderItems
      * @return
      */
-    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
-        Order order = new Order();
+    public static Order createOrder(final Member member, final Delivery delivery, final OrderItem... orderItems) {
+        final Order order = new Order();
         order.setMember(member);
         order.setDelivery(delivery);
-        for (OrderItem orderItem : orderItems) {
+        for (final OrderItem orderItem : orderItems) {
             order.addOrderIem(orderItem);
         }
         order.setStatus(OrderStatus.ORDER);
@@ -88,7 +98,7 @@ public class Order {
         }
 
         this.setStatus(OrderStatus.CANCEL);
-        for (OrderItem orderItem : orderItems) {
+        for (final OrderItem orderItem : orderItems) {
             orderItem.cancel();
         }
     }
