@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header">
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="jumbotron">
+        <h1>ORDER SERVICE</h1>
+        <h3 class="lead">회원</h3>
+        <p>
+            <a class="btn btn-outline-primary" href="/members/new">회원 가입</a>
+            <a class="btn btn-outline-primary" href="/members">회원 목록</a>
+        </p>
+        <h3 class="lead">상품</h3>
+        <p>
+            <a class="btn btn-outline-dark" href="/items/new">상품 등록</a>
+            <a class="btn btn-outline-dark" href="/items">상품 목록</a>
+        </p>
+        <h3 class="lead">주문</h3>
+        <p>
+            <a class="btn btn-outline-info" href="/order">상품 주문</a>
+            <a class="btn btn-outline-info" href="/orders">주문 내역</a>
+        </p>
+    </div>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
