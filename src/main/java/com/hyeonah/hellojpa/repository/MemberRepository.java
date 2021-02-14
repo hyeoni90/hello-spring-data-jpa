@@ -1,10 +1,11 @@
 package com.hyeonah.hellojpa.repository;
 
 import com.hyeonah.hellojpa.domain.Member;
-import java.util.List;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import java.util.List;
 
 /**
  * Created by hyeonahlee on 2020-11-15.
