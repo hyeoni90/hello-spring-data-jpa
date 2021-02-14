@@ -1,6 +1,8 @@
 package com.hyeonah.hellojpa.controller;
 
 import com.hyeonah.hellojpa.domain.Member;
+import com.hyeonah.hellojpa.domain.Order;
+import com.hyeonah.hellojpa.domain.OrderSearch;
 import com.hyeonah.hellojpa.domain.item.Item;
 import com.hyeonah.hellojpa.service.ItemService;
 import com.hyeonah.hellojpa.service.MemberService;
@@ -8,9 +10,7 @@ import com.hyeonah.hellojpa.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +41,21 @@ public class OrderController {
                         @RequestParam("itemId") final Long itemId,
                         @RequestParam("count") final int count) {
         orderService.order(memberId, itemId, count);
+        return "redirect:/orders";
+    }
+
+    @GetMapping("/orders")
+    public String orderList(@ModelAttribute("orderSearch") final OrderSearch orderSearch,
+                            final Model model) {
+        final List<Order> orders = orderService.findOrders(orderSearch);
+        model.addAttribute("orders", orders);
+
+        return "order/orderList";
+    }
+
+    @PostMapping("/orders/{orderId}/cancel")
+    public String cancelOrder(@PathVariable final Long orderId) {
+        orderService.cancelOrder(orderId);
         return "redirect:/orders";
     }
 }

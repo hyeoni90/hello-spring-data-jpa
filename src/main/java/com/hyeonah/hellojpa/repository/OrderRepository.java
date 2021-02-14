@@ -2,19 +2,15 @@ package com.hyeonah.hellojpa.repository;
 
 import com.hyeonah.hellojpa.domain.Order;
 import com.hyeonah.hellojpa.domain.OrderSearch;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
+
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hyeonahlee on 2020-11-15.
@@ -34,7 +30,7 @@ public class OrderRepository {
     }
 
     public List<Order> findAllByString(final OrderSearch orderSearch) {
-        String jqpl = "select o from Order o left join o.member m";
+        String jqpl = "select o from Order o join o.member m";
         boolean isFirstCondition = true;
 
         // 주문 상태 검색
