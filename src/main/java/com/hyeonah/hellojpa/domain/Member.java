@@ -1,11 +1,12 @@
 package com.hyeonah.hellojpa.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.*;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hyeonahlee on 2020-11-13.
@@ -15,10 +16,12 @@ import lombok.Setter;
 @Setter
 public class Member {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "member_id")
     private Long id;
 
+    @NotEmpty
     private String name;
 
     @Embedded
