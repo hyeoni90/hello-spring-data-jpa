@@ -1,6 +1,5 @@
 package com.hyeonah.hellojpa.api.v1;
 
-import com.hyeonah.hellojpa.application.dto.CreateMemberRequest;
 import com.hyeonah.hellojpa.application.dto.CreateMemberResponse;
 import com.hyeonah.hellojpa.domain.Member;
 import com.hyeonah.hellojpa.service.MemberService;
@@ -22,15 +21,6 @@ public class MemberApiController {
 
     @PostMapping("/api/v1/members")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid final Member member) {
-        final Long id = memberService.join(member);
-        return new CreateMemberResponse(id);
-    }
-
-    @PostMapping("/api/v2/members")
-    public CreateMemberResponse saveMemberV2(@RequestBody @Valid final CreateMemberRequest request) {
-        final Member member = new Member();
-        member.setName(request.getName());
-
         final Long id = memberService.join(member);
         return new CreateMemberResponse(id);
     }
