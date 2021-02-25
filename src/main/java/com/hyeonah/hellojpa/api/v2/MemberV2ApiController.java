@@ -1,15 +1,14 @@
 package com.hyeonah.hellojpa.api.v2;
 
-import com.hyeonah.hellojpa.application.dto.CreateMemberRequest;
-import com.hyeonah.hellojpa.application.dto.CreateMemberResponse;
-import com.hyeonah.hellojpa.application.dto.UpdateMemberRequest;
-import com.hyeonah.hellojpa.application.dto.UpdateMemberResponse;
+import com.hyeonah.hellojpa.application.dto.*;
 import com.hyeonah.hellojpa.domain.Member;
 import com.hyeonah.hellojpa.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by hyeoni90 on 2021-02-24
@@ -37,5 +36,14 @@ public class MemberV2ApiController {
         memberService.update(id, request.getName());
         final Member findMember = memberService.findOne(id);
         return new UpdateMemberResponse(findMember.getId(), findMember.getName());
+    }
+
+    @GetMapping("/api/v2/members")
+    public Result memberV2() {
+        final List<Member> findMembers = memberService.findMembers();
+        final List<MemberDto> members = findMembers.stream()
+                .map(m -> new MemberDto(m.getName()))
+                .collect(Collectors.toList());
+        return new Result(members);
     }
 }
