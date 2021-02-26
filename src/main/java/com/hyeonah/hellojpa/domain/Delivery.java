@@ -1,9 +1,10 @@
 package com.hyeonah.hellojpa.domain;
 
-import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -15,10 +16,12 @@ import static javax.persistence.FetchType.LAZY;
 @Setter
 public class Delivery {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "delivery_id")
     private Long id;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "delivery", fetch = LAZY)
     private Order order;
 

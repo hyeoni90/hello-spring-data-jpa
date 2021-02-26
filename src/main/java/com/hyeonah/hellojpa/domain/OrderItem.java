@@ -1,24 +1,22 @@
 package com.hyeonah.hellojpa.domain;
 
-import static javax.persistence.FetchType.LAZY;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hyeonah.hellojpa.domain.item.Item;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
+import static javax.persistence.FetchType.LAZY;
+
 /**
  * Created by hyeonahlee on 2020-11-13.
  */
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
@@ -31,6 +29,7 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+    @JsonIgnore
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
