@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequiredArgsConstructor
-public class MemberV2ApiController {
+public class MemberApiV2Controller {
 
     private final MemberService memberService;
 
